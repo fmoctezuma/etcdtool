@@ -41,5 +41,4 @@ echo "Checking etcd status for cluster:" $CLUSTER_NAME
 echo "Following etcd servers were found:" $ETCD_SERVERS
 echo "Kubernetes master IP's:" $MASTER_NODES
 echo "ETCD Cluster Health:"
-ssh -i id_rsa_core -q -o StrictHostKeyChecking=no core@$MASTER0 "etcdctl --cert-file=$CRT_F --key-file=$KEY_F --ca-file=$CAA_F --endpoints $ETCD_SERVERS cluster-health"
-~
+ssh -i /data/id_rsa_core -q -o StrictHostKeyChecking=no core@$MASTER0 "etcdctl --cert-file=$CRT_F --key-file=$KEY_F --ca-file=$CAA_F --endpoints $ETCD_SERVERS cluster-health"
