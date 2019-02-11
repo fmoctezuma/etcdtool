@@ -30,17 +30,17 @@ NODES=`(kubectl get nodes -o jsonpath='{range .items[*]}{.status.addresses[?(@.t
 #SED_FILTER="(tr ' ' '\n'|sed -e 's/--//')"
 
 #Get etcd servers via jsonpath
-ETCD_SERVERS=`(kubectl get ds kube-apiserver -n kube-system -o=jsonpath='{.items[0]}{.spec.template.spec.containers[0].command}'\
+ETCD_SERVERS=`(kubectl get pods -n kube-system -l component=kube-apiserver -o jsonpath='{.items[0].spec.containers[0].command}'\
         |tr ' ' '\n'|grep etcd-servers|sed -e 's/'etcd-servers'=//;s/- --//;s/--//;s/^ *//')`
 
 #Get etcd certs via jsonpath thru the kubeapi-server flags
-CAA_F=`(kubectl get ds kube-apiserver -n kube-system -o=jsonpath='{.items[0]}{.spec.template.spec.containers[0].command}'\
+CAA_F=`(kubectl get pods -n kube-system -l component=kube-apiserver -o jsonpath='{.items[0].spec.containers[0].command}'\
         |tr ' ' '\n'|grep etcd-ca|sed -e 's/'etcd-cafile'=//;s/- --//;s/--//;s/^ *//')`
 
-CRT_F=`(kubectl get ds kube-apiserver -n kube-system -o=jsonpath='{.items[0]}{.spec.template.spec.containers[0].command}'\
+CRT_F=`(kubectl get pods -n kube-system -l component=kube-apiserver -o jsonpath='{.items[0].spec.containers[0].command}'\
         |tr ' ' '\n'|grep etcd-cert|sed -e 's/'etcd-certfile'=//;s/- --//;s/--//;s/^ *//')`
 
-KEY_F=`(kubectl get ds kube-apiserver -n kube-system -o=jsonpath='{.items[0]}{.spec.template.spec.containers[0].command}'\
+KEY_F=`(kubectl get pods -n kube-system -l component=kube-apiserver -o jsonpath='{.items[0].spec.containers[0].command}'\
         |tr ' ' '\n'|grep etcd-key|sed -e 's/'etcd-keyfile'=//;s/- --//;s/--//;s/^ *//')`
 
 # Output
