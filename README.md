@@ -4,7 +4,7 @@
 Basic etcd healthcheck for mk8s, (check branches, this one use etcdtool:kaasctl)
 
 ### Simple usage
-
+```bash
 docker run -v /opt/rpc-mk8s/mk8s/provider-<providername>/clusters/<clustername>:/data quay.io/fmoctezuma/etcdtool:kaasctl
 Checking etcd status for cluster: kubernetes
 Following etcd servers were found: https://10.0.0.15:2379,https://10.0.0.14:2379,https://10.0.0.10:2379
@@ -14,3 +14,4 @@ member 147e37ea76d85cfa is healthy: got healthy result from https://10.0.0.10:23
 member 503e0d1f76136e08 is healthy: got healthy result from https://10.0.0.14:2379
 member 7b9b2cb736bf0fc5 is healthy: got healthy result from https://10.0.0.15:2379
 cluster is healthy
+```
