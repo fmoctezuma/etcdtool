@@ -1,20 +1,16 @@
 [![Docker Repository on Quay](https://quay.io/repository/fmoctezuma/etcdtool/status "Docker Repository on Quay")](https://quay.io/repository/fmoctezuma/etcdtool)
 
 ### etcdtool
-Basic etcd healthcheck for mk8s, (check branches)
+Basic etcd healthcheck for mk8s, (check branches, this one use etcdtool:kaasctl)
 
 ### Simple usage
 
-Move to mk8s cluster directory
-
-```
-docker run -v /Some_path/mk8s/tools/installer/clusters/<ClusterDirectory>:/data --rm quay.io/fmoctezuma/etcdtool:bash
-
+docker run -v /opt/rpc-mk8s/mk8s/provider-<providername>/clusters/<clustername>:/data quay.io/fmoctezuma/etcdtool:kaasctl
+Checking etcd status for cluster: kubernetes
+Following etcd servers were found: https://10.0.0.15:2379,https://10.0.0.14:2379,https://10.0.0.10:2379
+Kubernetes master IP's: 12.34.56.78 90.87.65.43 12.34.56.89
 ETCD Cluster Health:
-member b980d12492b48c1c is healthy: got healthy result from https://etcd-0.cluster.com:2379
-member bf308d6012fc0fb6 is healthy: got healthy result from https://etcd-1.cluster.com:2379
-failed to check the health of member ccbndfg on https://etcd-2.cluster.com:2379: 
-Get https://etcd-2.cluster.com:2379/health: dial tcp 10.0.0.14:2379: connect: no route to host
-member c0e462f6a13d1ccc is unreachable: [https://etcd-2.cluster.com:2379] are all unreachable
-cluster is degraded
-```
+member 147e37ea76d85cfa is healthy: got healthy result from https://10.0.0.10:2379
+member 503e0d1f76136e08 is healthy: got healthy result from https://10.0.0.14:2379
+member 7b9b2cb736bf0fc5 is healthy: got healthy result from https://10.0.0.15:2379
+cluster is healthy
